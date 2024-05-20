@@ -10,7 +10,7 @@ import { startLoading, stopLoading } from "../actions/loading-modal.action";
 
    startLoading$ = createEffect(() => this.actions$.pipe(
      ofType(startLoading),
-     switchMap(() => of(stopLoading()).pipe(delay(5000))),
+     switchMap(() => of(stopLoading()).pipe(delay(3000))),
    )
   );
 

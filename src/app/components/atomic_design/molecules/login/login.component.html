@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="login">
+
+  <div class="login__container">
+    <app-input class="login__container-input" ></app-input>
+
+    <div class="login__container-checkbox">
+
+      <label for="checkbox-player" class = "login__custom-radio">
+        <span class="login__custom-radio-span">Jugador</span>
+        <input type="radio" id="checkbox-player" name="role" [(ngModel)]="selectedRole"  value="Player" (change)="updateSessionStorage()">
+      </label>
+
+      <label for="checkbox-specter" class = "login__custom-radio">
+        <span class="login__custom-radio-span">Espectador</span>
+        <input type="radio" id="checkbox-specter" name="role" [(ngModel)]="selectedRole"  value="Specter"  (change)="updateSessionStorage()">
+      </label>
+
+    </div>
+
+    <app-button class="login__container-button" (click)="onLogin()" (keydown)="onKeydown($event)"></app-button>
+
+  </div>
+
+</div>
