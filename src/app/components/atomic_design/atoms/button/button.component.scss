@@ -1,0 +1,35 @@
+@import 'src/styles/mixins.scss';
+
+.button__container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+
+  &-button {
+    @include typography($font-weight: bold);
+    background-color: #F6F7FC;
+    color: #330072;
+    height: 2.5rem;
+    width: 10rem;
+    border-radius: 50px;
+    border: none;
+
+    &:disabled {
+      background-color: #9D9DA14D ;
+      color: #9D9DA199;
+    }
+
+    &:not(:disabled):hover {
+      cursor: pointer;
+      background-color: #330072;
+      border: 1px solid #F6F7FC;
+      box-shadow: 0 0 10px #F6F7FC;
+      color: #F6F7FC;
+    }
+
+
+  }
+
+
+}
+
