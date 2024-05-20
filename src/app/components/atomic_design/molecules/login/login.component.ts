@@ -13,13 +13,14 @@ import { selectInputValueSelector } from 'src/app/state/selectors/input.selector
 })
 export class LoginComponent implements OnInit {
 
-  loadingGame: Observable<boolean>;
+  isLogin: boolean;
 
   inputValue$: Observable<string>;
   selectedRole: string;
   inputValue: string;
 
   constructor(private store : Store<AppState>) {
+    this.isLogin = true;
     this.inputValue$ = new Observable<string>();
 
     this.selectedRole = 'Player';
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.updateSessionStorage();
+    this.isLogin = false;
   }
 
   onKeydown(event: KeyboardEvent) {
