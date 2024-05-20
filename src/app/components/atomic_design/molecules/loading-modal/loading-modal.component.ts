@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store} from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoadingModalState } from 'src/app/components/core/models/loading-modal.state';
 import { startLoading } from 'src/app/state/actions/loading-modal.action';
-import { AppState } from 'src/app/state/app.state';
 import { selectIsLoadingSelector } from 'src/app/state/selectors/loading-modal.selector';
 
 @Component({
@@ -21,6 +20,9 @@ export class LoadingModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$ = this.store.select(selectIsLoadingSelector);
+  }
+
+  ngAfterViewInit() {
     this.loadPage();
   }
 

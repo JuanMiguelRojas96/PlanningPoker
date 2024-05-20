@@ -13,6 +13,7 @@ import { CreateGameComponent } from './components/pages/create-game/create-game.
 import { LoadingModalComponent } from './components/atomic_design/molecules/loading-modal/loading-modal.component';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingModalEffect } from './state/effects/loading-modal.effect';
+import { LoginComponent } from './components/atomic_design/molecules/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoadingModalEffect } from './state/effects/loading-modal.effect';
     ButtonComponent,
     CreateGameComponent,
     LoadingModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,15 @@
       color: #9D9DA199;
     }
 
+    &:not(:disabled):hover {
+      cursor: pointer;
+      background-color: #330072;
+      border: 1px solid #F6F7FC;
+      box-shadow: 0 0 10px #F6F7FC;
+      color: #F6F7FC;
+    }
+
+
   }
 
 

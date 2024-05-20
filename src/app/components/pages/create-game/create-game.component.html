@@ -6,7 +6,7 @@
 
   <div class="create-game__container">
     <app-input class="create-game__container-input"></app-input>
-    <app-button class="create-game__container-button"></app-button>
+    <app-button class="create-game__container-button" (click) = "createGame()" (keydown)="onKeydown($event)"></app-button>
   </div>
 
 </body>
