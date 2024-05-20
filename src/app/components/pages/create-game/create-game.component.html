@@ -1,0 +1,14 @@
+<body *ngIf="!(isLoading$ | async)" class="create-game">
+  <div class="create-game__logo">
+    <img class="create-game__logo-img" src="../../../../assets/icons/ficha-de-poker.svg" alt="Logo de poker">
+    <p class="create-game__logo-text">Crear partida</p>
+  </div>
+
+  <div class="create-game__container">
+    <app-input class="create-game__container-input"></app-input>
+    <app-button class="create-game__container-button"></app-button>
+  </div>
+
+</body>
+
+<app-loading-modal></app-loading-modal>

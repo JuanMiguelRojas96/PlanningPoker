@@ -1,0 +1,5 @@
+<div class="input">
+  <label class="input__label" for="input">{{label$ | async}}</label>
+  <input class="input__input" type="text" id="input" [value]="inputValue$ | async" (input)="onInputValueChange($event)" >
+</div>
+
