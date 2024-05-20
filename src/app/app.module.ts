@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { LoadingModalComponent } from './components/atomic_design/molecules/load
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingModalEffect } from './state/effects/loading-modal.effect';
 import { LoginComponent } from './components/atomic_design/molecules/login/login.component';
+import { GameComponent } from './components/pages/game/game.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { LoginComponent } from './components/atomic_design/molecules/login/login
     CreateGameComponent,
     LoadingModalComponent,
     LoginComponent,
+    GameComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(ROOT_REDUCERS),

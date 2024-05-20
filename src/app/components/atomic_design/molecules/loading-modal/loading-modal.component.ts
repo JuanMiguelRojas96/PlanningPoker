@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { Store} from '@ngrx/store';
 import { Observable} from 'rxjs';
 import { LoadingModalState } from 'src/app/components/core/models/loading-modal.state';
@@ -15,7 +15,7 @@ export class LoadingModalComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
 
-  constructor(private store : Store<{isLoading: LoadingModalState}>, private cdr : ChangeDetectorRef) {
+  constructor(private store : Store<{isLoading: LoadingModalState}>) {
     this.isLoading$ = new Observable<boolean>();
    }
 

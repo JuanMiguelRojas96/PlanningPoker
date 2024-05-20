@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { setButtonValue } from 'src/app/state/actions/button.action';
-import { setLabelValue } from 'src/app/state/actions/input.actions';
+import { setInputValue, setLabelValue } from 'src/app/state/actions/input.actions';
 import { AppState } from 'src/app/state/app.state';
 import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';
 import { selectIsLoadingSelector } from 'src/app/state/selectors/loading-modal.selector';
@@ -14,12 +15,12 @@ import { selectIsLoadingSelector } from 'src/app/state/selectors/loading-modal.s
 })
 export class CreateGameComponent implements OnInit {
 
-  nameGame$ : Observable<string>;
   isLoading$: Observable<boolean>;
   inputValue$: Observable<string>;
 
-  constructor(private store : Store<AppState>) {
-    this.nameGame$ = new Observable<string>();
+  value: string = '';
+
+  constructor(private store : Store<AppState>,private router : Router) {
     this.isLoading$ = new Observable<boolean>();
     this.inputValue$ = new Observable<string>();
    }
@@ -52,8 +53,15 @@ export class CreateGameComponent implements OnInit {
 
   createGame() {
     this.inputValue$.subscribe((value) => {
-      sessionStorage.setItem('nameGame', value);
+      this.value = value;
     })
+    sessionStorage.setItem('role', 'propietario');
+    sessionStorage.setItem('nameGame', this.value);
+    this.router.navigate(['/game']);
+
+    this.store.dispatch(setInputValue({newInput: {inputValue: ''}}));
+    this.store.dispatch(setLabelValue({newLabel: {label: ''}}));
+    this.store.dispatch(setButtonValue({newButton: {buttonText: ''}}));
   }
 
 }
