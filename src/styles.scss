@@ -3,3 +3,12 @@
 html{
   @include background;
 }
+
+@media screen and (max-width: 768px) {
+
+  html{
+    background-image: url("./assets/backgrounds/background-mobile.svg");
+    background-color: #1F0D3F;
+  }
+
+}

@@ -1,0 +1,10 @@
+
+<div *ngIf="typeUser === 'Player'" class="deck">
+  <h2 class="deck__title">Elige una carta 👇</h2>
+  <div class="deck__container">
+    <app-card class="deck__container-card"  *ngFor="let card of cards; let i = index"
+    [card]="card"
+    [isSelected] ="selectedCardIndex === i"
+    (cardSelected) ="onCardSelected(i)"></app-card>
+  </div>
+</div>

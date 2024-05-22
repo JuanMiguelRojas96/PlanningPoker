@@ -1,0 +1,11 @@
+@import 'src/styles/mixins.scss';
+
+.profile {
+  @include typography($font-weight: bold);
+  color: #330072 !important;
+  border-radius: 50%;
+  background-color: #BDBDFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

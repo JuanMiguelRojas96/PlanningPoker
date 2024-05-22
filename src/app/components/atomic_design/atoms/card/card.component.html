@@ -1,0 +1,18 @@
+<div class="card" (click)="selectCard()">
+
+  <div *ngIf="card.type === 'Player' || card.type === undefined " class="card__container"
+  [style.width]="card.width"
+  [style.height]="card.height"
+  [ngStyle]="{'background-color': isSelected ? '#E4A4FF' : (card.selected ? '#BB65FF' : 'transparent') ,
+    'box-shadow': isSelected ? '0px 0px 20px 0px #BDBDFF33 inset, 0px 0px 15px 0px #6429CD' : '0px 5px 10px 0px #6429CD99,0px 0px 6px 0px #BDBDFF99 inset'
+  }">
+  <span class="card__container-text">{{card.text}}</span>
+
+  </div>
+
+  <app-profile *ngIf = "card.type === 'Specter'" [profileProps]="profileProps"></app-profile>
+
+  <span class="card__name">{{card.name}}</span>
+
+</div>
+

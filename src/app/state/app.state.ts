@@ -5,6 +5,8 @@ import { ButtonState } from "../components/core/models/button.state";
 import { buttonReducer } from "./reducers/button.reducer";
 import { LoadingModalState } from "../components/core/models/loading-modal.state";
 import { loadingModalReducer } from "./reducers/loading-modal.reducer";
+import { DeckState } from "../components/core/models/deck.state";
+import { deckReducer } from "./reducers/deck.reducer";
 
 
 export interface AppState {
@@ -16,6 +18,8 @@ export interface AppState {
   isInputValid: InputState;
 
   buttonText: ButtonState;
+
+  cardText: DeckState;
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
@@ -27,4 +31,6 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
   isInputValid: inputReducer,
 
   buttonText: buttonReducer,
+
+  cardText: deckReducer
 }

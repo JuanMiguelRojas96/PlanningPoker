@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { setLabelValue } from 'src/app/state/actions/input.actions';
 import { setButtonValue } from 'src/app/state/actions/button.action';
 import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';
+import { Router } from '@angular/router';
 
 describe('CreateGameComponent', () => {
   let component: CreateGameComponent;
@@ -54,8 +55,6 @@ describe('CreateGameComponent', () => {
   });
 
 
-
-
   it('should render component and text when isLoading$ is false', () => {
     const createGameElement: HTMLElement = fixture.nativeElement.querySelector('.create-game');
     expect(createGameElement).toBeTruthy();
@@ -66,6 +65,29 @@ describe('CreateGameComponent', () => {
     const createGameElement: HTMLElement = fixture.nativeElement.querySelector('.create-game');
     expect(!createGameElement).toBeFalsy();
   });
+
+
+  it('should create game and navigate to /game', () => {
+    const routerSpy = spyOn(TestBed.inject(Router), 'navigate');
+    component.createGame();
+
+    expect(routerSpy).toHaveBeenCalledWith(['/game']);
+  });
+
+  it('should call createGame when Enter key is pressed', () => {
+    const createGameSpy = spyOn(component, 'createGame');
+    const event = new KeyboardEvent('keydown', { key: 'Enter' });
+    component.onKeydown(event);
+    expect(createGameSpy).toHaveBeenCalled();
+  });
+
+  it('should not call createGame when key other than Enter is pressed', () => {
+    const createGameSpy = spyOn(component, 'createGame');
+    const event = new KeyboardEvent('keydown', { key: 'A' });
+    component.onKeydown(event);
+    expect(createGameSpy).not.toHaveBeenCalled();
+  });
+
 
 
 

@@ -1,0 +1,37 @@
+@import '../../../../../styles/mixins.scss';
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #BB65FF;
+    border-radius: 0.438rem;
+    box-shadow: 0px 5px 10px 0px #6429CD99,0px 0px 6px 0px #BDBDFF99 inset;
+
+    &:hover{
+      cursor: pointer;
+      background-color: #9D9DA199;
+    }
+
+    &:active{
+      background-color: #9D9DA1;
+    }
+
+    &-text{
+      @include typography($font-size: 0.9rem, $font-weight: bold);
+    }
+    
+  }
+
+  &__name{
+    @include typography($font-size: 0.9rem);
+  }
+
+}
+

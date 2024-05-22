@@ -59,7 +59,7 @@ describe('LoginComponent', () => {
 
   it('should set userData in sessionStorage on updateSessionStorage', () => {
     const expectedData = {
-      inputValue: 'Test Input',
+      name: 'Test Input',
       selectedRole: 'Player',
     };
     spyOn(sessionStorage, 'setItem');
