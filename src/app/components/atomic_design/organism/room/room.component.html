@@ -1,0 +1,22 @@
+<body class="room">
+
+  <div  class="room__top">
+    <app-card class="room__card" *ngFor="let card of topCards" [card]="card" [profileProps] ="setProfileName(card?.name?? '')"></app-card>
+  </div>
+
+  <div  class="room__left">
+    <app-card class="room__card" *ngFor="let card of leftCards" [card]="card" [profileProps] ="setProfileName(card?.name?? '')"></app-card>
+  </div>
+
+  <app-board class="room__board"></app-board>
+
+  <div  class="room__right">
+    <app-card class="room__card" *ngFor="let card of rightCards" [card]="card" [profileProps] ="setProfileName(card?.name?? '')"></app-card>
+  </div>
+
+  <div  class="room__bottom">
+    <app-card  class="room__card" *ngFor="let card of bottomCards" [card]="card" [profileProps] ="setProfileName(card?.name?? '')"></app-card>
+  </div>
+
+</body>
+

@@ -22,3 +22,7 @@
   text-align: center;
 }
 
+@mixin background-mobile{
+  background-image: url('/src/assets/backgounds/background-mobile.svg');
+}
+

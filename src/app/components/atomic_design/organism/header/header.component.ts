@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { ProfileProps } from '../../atoms/profile/profile.component';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent implements OnInit {
+
+  inputValue$: Observable<string>;
+
+  nameGame:string;
+
+  profileProps: ProfileProps = {
+    width: '36px',
+    height: '36px',
+    fontSize: '14px',
+    name: ''
+  }
+
+  constructor(private store: Store<AppState>) {
+    this.nameGame = ""
+    this.inputValue$ = new Observable<string>();
+  }
+
+  ngOnInit(): void {
+    this.inputValue$ = this.store.select(selectInputValueSelector);
+    this.getNameGame();
+    this.getName();
+  }
+
+  getNameGame(){
+    sessionStorage.getItem('nameGame')
+    this.nameGame = sessionStorage.getItem('nameGame') ?? 'Planning Poker'
+  }
+
+  getName(){
+    this.inputValue$.subscribe((value) => {
+      this.profileProps.name = value.substring(0, 2).toUpperCase();
+    })
+  }
+
+}

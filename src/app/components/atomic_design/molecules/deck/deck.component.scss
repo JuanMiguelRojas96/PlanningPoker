@@ -1,0 +1,44 @@
+@import '../../../../../styles/mixins.scss';
+
+.deck{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.25rem;
+
+  &__title{
+    @include typography($font-size: 1.3rem, $font-weight: bold);
+    justify-self: center;
+  }
+
+  &__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-card{
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .deck {
+
+  &__container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 1rem 0;
+
+    &-card {
+      margin-left: 1rem;
+      flex: 0 0 auto;
+    }
+  }
+
+  }
+
+}

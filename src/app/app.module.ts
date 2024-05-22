@@ -16,6 +16,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoadingModalEffect } from './state/effects/loading-modal.effect';
 import { LoginComponent } from './components/atomic_design/molecules/login/login.component';
 import { GameComponent } from './components/pages/game/game.component';
+import { HeaderComponent } from './components/atomic_design/organism/header/header.component';
+import { ProfileComponent } from './components/atomic_design/atoms/profile/profile.component';
+import { BoardComponent } from './components/atomic_design/molecules/board/board.component';
+import { CardComponent } from './components/atomic_design/atoms/card/card.component';
+import { DeckComponent } from './components/atomic_design/molecules/deck/deck.component';
+import { RoomComponent } from './components/atomic_design/organism/room/room.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,12 @@ import { GameComponent } from './components/pages/game/game.component';
     LoadingModalComponent,
     LoginComponent,
     GameComponent,
+    HeaderComponent,
+    ProfileComponent,
+    BoardComponent,
+    CardComponent,
+    DeckComponent,
+    RoomComponent,
   ],
   imports: [
     FormsModule,

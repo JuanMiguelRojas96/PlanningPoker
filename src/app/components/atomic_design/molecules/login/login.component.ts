@@ -17,14 +17,14 @@ export class LoginComponent implements OnInit {
 
   inputValue$: Observable<string>;
   selectedRole: string;
-  inputValue: string;
+  name: string;
 
   constructor(private store : Store<AppState>) {
     this.isLogin = true;
     this.inputValue$ = new Observable<string>();
 
     this.selectedRole = 'Player';
-    this.inputValue = '';
+    this.name = '';
   }
 
   ngOnInit(): void {
@@ -43,17 +43,17 @@ export class LoginComponent implements OnInit {
 
 
   updateSessionStorage() {
-    this.inputValue$.subscribe((value) => {
-      this.inputValue = value;
-    });
+  this.inputValue$.subscribe((value) => {
+    this.name = value;
 
     const data = {
-
-      inputValue: this.inputValue,
+      name: this.name,
       selectedRole: this.selectedRole
     };
     sessionStorage.setItem('userData', JSON.stringify(data));
-  }
+  });
+}
+
 
   onLogin() {
     this.updateSessionStorage();
