@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CardProps } from '../../atoms/card/card.component';
-import { Observable, Subscription, from } from 'rxjs';
+import { Observable, Subscription} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';

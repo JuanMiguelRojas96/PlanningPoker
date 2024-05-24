@@ -24,7 +24,7 @@ export class AverageDeckComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTextsCardsSelected();
-    this.getAverage();
+    this.getAverage()
   }
 
   getAverage() {

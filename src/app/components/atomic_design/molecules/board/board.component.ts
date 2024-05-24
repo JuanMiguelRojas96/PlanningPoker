@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AnimationOptions } from 'ngx-lottie';
-import { Observable, timeout} from 'rxjs';
+import { Observable } from 'rxjs';
 import { startCardsRevealed } from 'src/app/state/actions/board.action';
 import { AppState } from 'src/app/state/app.state';
 import { selectIsCardsRevealedSelector } from 'src/app/state/selectors/board.selector';

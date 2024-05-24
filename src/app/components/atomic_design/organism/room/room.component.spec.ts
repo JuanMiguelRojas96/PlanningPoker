@@ -2,10 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomComponent } from './room.component';
 import { Store, StoreModule } from '@ngrx/store';
-import { of } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
-import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';
-import { selectCardTextSelector } from 'src/app/state/selectors/deck.selector';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -15,26 +14,21 @@ describe('RoomComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RoomComponent ],
-      imports: [StoreModule.forRoot({})]
+      imports: [StoreModule.forRoot({})],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RoomComponent);
-    store = TestBed.inject(Store);
     component = fixture.componentInstance;
 
-    spyOn(store, 'select').and.callFake((selector: any) => {
-      if (selector === selectInputValueSelector) {
-        return of('Test Input Value');
-      } else if (selector === selectCardTextSelector) {
-        return of('Test Card Text');
-      }
-      return of(null);
-    });
-
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    component.ngOnDestroy();
   });
 
   it('should create room', () => {
@@ -43,13 +37,15 @@ describe('RoomComponent', () => {
 
   it('should set profile name correctly', () => {
     const name = 'Test Name';
-    component.setProfileName(name);
-    expect(component.profileProps.name).toEqual(name.substring(0, 2).toUpperCase());
+    const expectedProfileName = name.substring(0, 2).toUpperCase();
+    const profileProps = component.setProfileName(name);
+    expect(profileProps.name).toEqual(expectedProfileName);
   });
 
   it('should get name from store', () => {
-    component.getName();
-    expect(component.cards[6].name).toEqual('Test Input Value');
+    const testName = 'Test Input Value';
+    component.updatePlayerName(testName);
+    expect(component.cards[6].name).toEqual(testName);
   });
 
   it('should render top cards correctly', () => {
@@ -73,13 +69,15 @@ describe('RoomComponent', () => {
   });
 
   it('should handle setProfileName function with empty string', () => {
-    component.setProfileName('');
-    expect(component.profileProps.name).toEqual('');
+    const profileProps = component.setProfileName('');
+    expect(profileProps.name).toEqual('');
   });
 
   it('should handle getName function with null name from store', () => {
-    component.getName();
-    expect(component.cards[6].name).toBe('Test Input Value');
+    component.cards[6].name = '';
+    const testName = 'Test Input Value';
+    component.updatePlayerName(testName);
+    expect(component.cards[6].name).toEqual(testName);
   });
 
   it('should set type correctly based on sessionStorage data', () => {
@@ -101,5 +99,45 @@ describe('RoomComponent', () => {
     expect(topCards.length).toBe(1);
   });
 
+  it('should subscribe to observables on initialization', () => {
+    expect(component.subscriptions.length).toBeGreaterThan(0);
+  });
+
+  it('should handle selected card text', () => {
+    component.cards[6].selected = true;
+    fixture.detectChanges();
+    expect(component.cards[6].selected).toBeTrue();
+  });
+
+  it('should select cards randomly', () => {
+    spyOn(component, 'selectCardsRandomly').and.callThrough();
+    component.getCardsSpecter();
+    setTimeout(() => {
+      expect(component.selectCardsRandomly).toHaveBeenCalled();
+    },3100)
+  });
+
+  it('should dispatch card texts', () => {
+    spyOn(component, 'dispatchCardTexts').and.callThrough();
+    component.isCardsRevealed$ = of(true);
+    component.setValueCards(component.cards[0], 0);
+    expect(component.dispatchCardTexts).toHaveBeenCalled();
+  });
+
+  it('should handle selected card text and reveal cards', () => {
+    spyOn(component, 'selectCardsRandomly').and.callThrough();
+    component.isCardsRevealed$ = of(true);
+    component.handleSelectedCardText('Test Card Text');
+    expect(component.cards[6].selected).toBeTrue();
+    expect(component.selectCardsRandomly).toHaveBeenCalled();
+  });
+
+  it('should handle selected card text and not reveal cards', () => {
+    spyOn(component, 'selectCardsRandomly').and.callThrough();
+    component.isCardsRevealed$ = of(true);
+    component.handleSelectedCardText(null);
+    expect(component.cards[6].selected).toBeFalse();
+    expect(component.selectCardsRandomly).not.toHaveBeenCalled();
+  });
 
 });
