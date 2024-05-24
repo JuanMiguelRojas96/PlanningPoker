@@ -1,16 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { BoardComponent } from './board.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectCardTextSelector } from 'src/app/state/selectors/deck.selector';
 import { of } from 'rxjs';
+import { startCardsRevealed } from 'src/app/state/actions/board.action';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
   let fixture: ComponentFixture<BoardComponent>;
   let store: Store<AppState>;
   let buttonElement: HTMLElement;
+  let dispatchSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +26,7 @@ describe('BoardComponent', () => {
     fixture = TestBed.createComponent(BoardComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(Store);
+    dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
 
     spyOn(store, 'select').and.callFake((selector: any) => {
       if (selector === selectCardTextSelector) {
@@ -33,7 +36,6 @@ describe('BoardComponent', () => {
     });
 
     fixture.detectChanges();
-    buttonElement = fixture.nativeElement.querySelector('.board__zone-button');
   });
 
 
@@ -41,9 +43,22 @@ describe('BoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the button when selectedCardText$ emits a value', () => {
-    expect(buttonElement).toBeTruthy();
-    expect(buttonElement.textContent).toContain('Revelar cartas');
+  it('should dispatch startCardsRevealed action on revealCards', () => {
+    component.revealCards();
+    expect(dispatchSpy).toHaveBeenCalledWith(startCardsRevealed());
   });
+
+  it('should set statusReveal to true after calling revealCards', () => {
+    component.revealCards();
+    expect(component.statusReveal).toBeTrue();
+  });
+
+
+  it('should set statusReveal to false after 3 seconds', fakeAsync(() => {
+    component.revealCards();
+    tick(3000);
+    expect(component.statusReveal).toBeFalse();
+  }));
+
 
 });

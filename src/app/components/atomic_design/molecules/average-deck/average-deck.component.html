@@ -1,0 +1,13 @@
+<div class="average-deck">
+  <div class="average-deck__container">
+    <app-card class="average-deck__container-card"  *ngFor="let card of cards; let i = index"
+    [card]="card"></app-card>
+
+    <div class="average-deck__average">
+      <p class="average-deck__average-title">Promedio:</p>
+      <p class="average-deck__average-value">{{average}}</p>
+    </div>
+
+  </div>
+
+</div>

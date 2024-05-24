@@ -22,7 +22,9 @@ import { BoardComponent } from './components/atomic_design/molecules/board/board
 import { CardComponent } from './components/atomic_design/atoms/card/card.component';
 import { DeckComponent } from './components/atomic_design/molecules/deck/deck.component';
 import { RoomComponent } from './components/atomic_design/organism/room/room.component';
-
+import { LottieModule} from 'ngx-lottie';
+import player from 'lottie-web';
+import { AverageDeckComponent } from './components/atomic_design/molecules/average-deck/average-deck.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,11 +40,13 @@ import { RoomComponent } from './components/atomic_design/organism/room/room.com
     CardComponent,
     DeckComponent,
     RoomComponent,
+    AverageDeckComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    LottieModule.forRoot({ player: () => player }),
     StoreModule.forRoot(ROOT_REDUCERS),
     EffectsModule.forRoot([LoadingModalEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })

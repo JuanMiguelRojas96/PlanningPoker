@@ -7,6 +7,10 @@ import { LoadingModalState } from "../components/core/models/loading-modal.state
 import { loadingModalReducer } from "./reducers/loading-modal.reducer";
 import { DeckState } from "../components/core/models/deck.state";
 import { deckReducer } from "./reducers/deck.reducer";
+import { RoomState } from "../components/core/models/room.state";
+import { roomReducer } from "./reducers/room.reducer";
+import { BoardState } from "../components/core/models/board.state";
+import { boardReducer } from "./reducers/board.reducer";
 
 
 export interface AppState {
@@ -20,6 +24,14 @@ export interface AppState {
   buttonText: ButtonState;
 
   cardText: DeckState;
+  deckTexts: DeckState;
+
+  isCardsSelected: RoomState;
+  textCardsSelected: RoomState;
+
+  isCardsRevealed: BoardState;
+
+
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
@@ -32,5 +44,11 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
 
   buttonText: buttonReducer,
 
-  cardText: deckReducer
+  cardText: deckReducer,
+  deckTexts: deckReducer,
+
+  isCardsSelected: roomReducer,
+  textCardsSelected: roomReducer,
+
+  isCardsRevealed: boardReducer,
 }

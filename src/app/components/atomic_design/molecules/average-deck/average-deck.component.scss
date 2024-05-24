@@ -1,0 +1,65 @@
+@import 'src/styles/mixins.scss';
+@import 'src/styles/animations.scss';
+
+.average-deck{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.25rem;
+
+  &__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.563rem;
+
+    &-card{
+      margin-left: 1.688rem;
+    }
+  }
+
+  &__average{
+
+
+    height: 4rem;
+    margin-left:9.813rem;
+
+    &-title{
+      @include typography($font-size: 1rem);
+      margin: 0;
+    }
+
+    &-value{
+      @include typography($font-size: 2.25rem , $font-weight: bold);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+  }
+}
+@media screen and (max-width: 768px) {
+  .average-deck {
+
+    margin-bottom: 0;
+
+  &__container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 1rem 0;
+
+    &-card {
+      margin-left: 1rem;
+      flex: 0 0 auto;
+    }
+  }
+
+  &__average {
+    margin-right: 5rem;
+    margin-left: 5rem;
+  }
+
+  }
+
+}

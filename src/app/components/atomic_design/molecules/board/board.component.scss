@@ -34,7 +34,7 @@
     border-radius: 17.25rem;
     box-shadow: 0px 4px 4px 0px #0000000F, 0px 3px 6px 0px #0000000F;
     background-color: #1F0D3F99;
-    
+
 
     &-button{
       @include animated;
@@ -58,8 +58,33 @@
         background-color: #F6F7FC;
         color: #330072;
       }
+
+      &:disabled{
+        background-color: #9D9DA14D ;
+        color: #9D9DA199;
+      }
     }
 
+  }
+
+  &__loading{
+    @include animated;
+    @include fadeIn;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 11.375rem;
+
+    &-lottie{
+      position: relative;
+    }
+
+    &-text{
+      @include typography;
+      position: relative;
+      top: -5rem;
+    }
 
   }
 
