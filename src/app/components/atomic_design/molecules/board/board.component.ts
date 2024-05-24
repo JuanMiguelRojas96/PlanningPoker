@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { AnimationOptions } from 'ngx-lottie';
+import { Observable, timeout} from 'rxjs';
+import { startCardsRevealed } from 'src/app/state/actions/board.action';
 import { AppState } from 'src/app/state/app.state';
-import { selectCardTextSelector } from 'src/app/state/selectors/deck.selector';
+import { selectIsCardsRevealedSelector } from 'src/app/state/selectors/board.selector';
+import { selectIsCardsSelectedSelector } from 'src/app/state/selectors/room.selector';
 
 @Component({
   selector: 'app-board',
@@ -11,14 +14,35 @@ import { selectCardTextSelector } from 'src/app/state/selectors/deck.selector';
 })
 export class BoardComponent implements OnInit {
 
-  selectedCardText$: Observable<string | null>;
+  options: AnimationOptions = {
+    path: '../../../../../assets/animations/Loading.json',
+  };
+
+  isCardsSelected$: Observable<boolean>;
+  isCardsRevealed$: Observable<boolean>;
+
+  statusReveal: boolean = false;
+
+  role: string | null;
 
   constructor(private store: Store<AppState>) {
-    this.selectedCardText$ = new Observable<string | null>();
+    this.isCardsSelected$ = new Observable<boolean>();
+    this.isCardsRevealed$ = new Observable<boolean>();
+    this.role = sessionStorage.getItem('role');
   }
 
   ngOnInit(): void {
-    this.selectedCardText$ = this.store.select(selectCardTextSelector);
+    this.isCardsSelected$ = this.store.select(selectIsCardsSelectedSelector);
+    this.isCardsRevealed$ = this.store.select(selectIsCardsRevealedSelector);
   }
+
+  revealCards() {
+    this.store.dispatch(startCardsRevealed())
+    this.statusReveal = true
+    setTimeout(() => {this.statusReveal = false;}, 3000)
+
+
+  }
+
 
 }

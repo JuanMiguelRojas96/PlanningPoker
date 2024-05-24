@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputValue$ = this.store.select(selectInputValueSelector);
+    this.cleanSessionStorage();
     this.setLabelInput('Tu nombre');
     this.setButtonText('Continuar');
   }
@@ -43,16 +44,22 @@ export class LoginComponent implements OnInit {
 
 
   updateSessionStorage() {
-  this.inputValue$.subscribe((value) => {
-    this.name = value;
+    this.inputValue$.subscribe((value) => {
+      this.name = value;
 
-    const data = {
-      name: this.name,
-      selectedRole: this.selectedRole
-    };
-    sessionStorage.setItem('userData', JSON.stringify(data));
-  });
-}
+      const data = {
+        name: this.name,
+        selectedRole: this.selectedRole
+      };
+      sessionStorage.setItem('userData', JSON.stringify(data));
+    });
+  }
+
+  cleanSessionStorage() {
+    sessionStorage.removeItem('userData');
+  }
+
+
 
 
   onLogin() {
