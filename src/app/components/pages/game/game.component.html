@@ -1,0 +1,10 @@
+<body class="game">
+  <app-login></app-login>
+  <app-header class="game__header" ></app-header>
+  <div class="game__container">
+    <app-room></app-room>
+  </div>
+  <app-deck *ngIf="!(isCardsRevealed$ | async)" class="game__deck"></app-deck>
+  <app-average-deck class="game__average-deck" *ngIf="isCardsRevealed"></app-average-deck>
+</body>
+

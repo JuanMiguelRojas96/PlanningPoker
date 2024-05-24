@@ -1,0 +1,30 @@
+@import 'src/styles/mixins.scss';
+
+
+.input {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    @include typography($font-weight: bold);
+  }
+
+  &__input {
+    @include typography($font-size: 0.9rem);
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #BB65FF ;
+    border-radius:  1rem;
+    padding: 4px 4px 4px 15px;
+    width: 292px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .input {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}

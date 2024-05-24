@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'src/styles/mixins.scss';
+
+html{
+  @include background;
+}
+
+@media screen and (max-width: 768px) {
+
+  html{
+    background-image: url("./assets/backgrounds/background-mobile.svg");
+    background-color: #1F0D3F;
+  }
+
+}

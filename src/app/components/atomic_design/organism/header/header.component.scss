@@ -1,0 +1,82 @@
+@import 'src/styles/mixins.scss';
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2.188rem;
+  position: relative;
+
+  &__logo-container, &__container{
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo-container{
+    flex: 1;
+  }
+
+  &__container{
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: 5rem;
+
+    &-profile{
+      margin-right: 1.25rem;
+    }
+
+    &-button{
+      @include typography($font-weight: small);
+      background-color: transparent ;
+      border: 1px solid #F6F7FC;
+      border-radius: 50px;
+      width: 9.625rem;
+      height: 2rem;
+
+    }
+
+  }
+
+
+  &__logo{
+    max-width: 3.75rem;
+    max-height: 3.75rem;
+    margin-left: 5rem;
+  }
+
+  &__title{
+    @include typography($font-weight: bold, $font-size: 1.6rem);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .header{
+
+
+    &__title{
+      position: static;
+      transform: none;
+    }
+
+    &__logo{
+      margin-left: 0;
+    }
+
+    &__container{
+
+      margin: 0;
+
+      &-button{
+      display: none;
+      }
+    }
+
+  }
+
+}
