@@ -1,0 +1,20 @@
+<div *ngIf="viewModal" class="invite-modal">
+
+  <div class="invite-modal__container">
+
+    <div class="invite-modal__container-title">
+      <p class="invite-modal__container-title-text">Invitar jugadores</p>
+      <button class="invite-modal__container-title-button" (click)="changeShow()">X</button>
+    </div>
+
+    <div class="invite-modal__container-input">
+      <input #inviteLinkInput type="text" class="invite-modal__container-input-input" value="http://localhost:4200/9QdP98VGUrZQLNCqYAF7" placeholder="Link" readonly>
+    </div>
+
+    <div class="invite-modal__button-container">
+      <button class="invite-modal__button-container-button" (click)="copyLink(inviteLinkInput)" >Copiar Link</button>
+    </div>
+
+  </div>
+
+</div>

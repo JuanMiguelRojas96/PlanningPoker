@@ -25,6 +25,7 @@ import { RoomComponent } from './components/atomic_design/organism/room/room.com
 import { LottieModule} from 'ngx-lottie';
 import player from 'lottie-web';
 import { AverageDeckComponent } from './components/atomic_design/molecules/average-deck/average-deck.component';
+import { InviteModalComponent } from './components/atomic_design/molecules/invite-modal/invite-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { AverageDeckComponent } from './components/atomic_design/molecules/avera
     DeckComponent,
     RoomComponent,
     AverageDeckComponent,
+    InviteModalComponent,
   ],
   imports: [
     FormsModule,

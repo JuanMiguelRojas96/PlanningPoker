@@ -1,0 +1,90 @@
+@import 'src/styles/mixins.scss';
+@import 'src/styles/animations.scss';
+
+.invite-modal{
+  @include animated;
+  @include fadeIn;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(8px);
+  -moz-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    background-color: #1F0D3F;
+    border: 1px solid #9610FF;
+    border-radius: 25px;
+    height: 15.219rem;
+    width: 36.875rem;
+
+    &-input{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      &-input{
+        @include typography($font-size: 0.9rem);
+        width: 33.75rem;
+        outline: none;
+        background-color: transparent;
+        border: 1px solid #BB65FF ;
+        border-radius:  1rem;
+        padding: 0.25rem 0.25rem 0.25rem 0.938rem;
+      }
+    }
+
+    &-title{
+      display: flex;
+      justify-content: space-between;
+      background-color: #6429CD;
+      padding: 1rem 1.438rem;
+      border-radius: 25px 25px 0 0;
+
+
+      &-text{
+        @include typography($font-size: 1rem, $font-weight: bold);
+        margin: 0;
+      }
+
+      &-button{
+        @include typography($font-size: 1rem , $font-weight: small);
+        width: 1.375rem;
+        height: 1.375rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__button-container{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+
+    &-button{
+      @include typography($font-weight: bold);
+      background-color: #F6F7FC;
+      color: #330072;
+      height: 2.5rem;
+      width: 10rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+    }
+
+  }
+
+}
