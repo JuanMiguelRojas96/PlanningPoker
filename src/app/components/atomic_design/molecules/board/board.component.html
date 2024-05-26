@@ -2,6 +2,7 @@
   <div class="board__border">
     <div class="board__zone">
       <button *ngIf="(isCardsSelected$ | async) && !(isCardsRevealed$ | async)" [disabled] ="role != 'propietario'" (click)="revealCards()" class="board__zone-button">Revelar cartas</button>
+      <button *ngIf="enableNewVotation" class="board__zone-button" [disabled] ="role != 'propietario'" (click)="newVotation()" >Nueva Votación</button>
       <div *ngIf="statusReveal" class="board__loading">
         <ng-lottie class="board__loading-lottie" [options]="options"></ng-lottie>
         <p class="board__loading-text">Contando votos</p>

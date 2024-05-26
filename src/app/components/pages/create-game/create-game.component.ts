@@ -33,6 +33,8 @@ export class CreateGameComponent implements OnInit {
 
     this.setLabelInput('Nombra la partida');
     this.setButtonText('Crear partida');
+
+    sessionStorage.clear();
   }
 
 
@@ -52,6 +54,7 @@ export class CreateGameComponent implements OnInit {
 
 
   createGame() {
+
     this.inputValue$.subscribe((value) => {
       this.value = value;
     })

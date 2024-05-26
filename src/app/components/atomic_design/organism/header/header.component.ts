@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     this.inputValue$ = new Observable<string>();
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.inputValue$ = this.store.select(selectInputValueSelector);
     this.getNameGame();
     this.getName();
@@ -40,9 +40,15 @@ export class HeaderComponent implements OnInit {
   }
 
   getName(){
-    this.inputValue$.subscribe((value) => {
-      this.profileProps.name = value.substring(0, 2).toUpperCase();
-    })
+    const userData = sessionStorage.getItem('userData');
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      this.profileProps.name = parsedData.name.substring(0, 2).toUpperCase();
+    }else{
+      this.inputValue$.subscribe((value) => {
+        this.profileProps.name = value.substring(0, 2).toUpperCase();
+      })
+    }
   }
 
 }

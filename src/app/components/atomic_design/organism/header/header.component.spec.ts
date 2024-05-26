@@ -21,18 +21,9 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
-
-    spyOn(sessionStorage, 'getItem').and.returnValue('Planning Poker');
-
-    spyOn(store, 'select').and.returnValue(of('Some Value'));
-
-    spyOn(component.inputValue$, 'subscribe').and.callThrough();
 
     fixture.detectChanges();
   });
-
-
 
   it('should create header', () => {
     expect(component).toBeTruthy();

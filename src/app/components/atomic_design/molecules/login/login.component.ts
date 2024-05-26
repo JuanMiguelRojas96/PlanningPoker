@@ -29,9 +29,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputValue$ = this.store.select(selectInputValueSelector);
-    this.cleanSessionStorage();
+
     this.setLabelInput('Tu nombre');
     this.setButtonText('Continuar');
+    this.getUserData();
   }
 
   setLabelInput(labelValue:string){
@@ -55,11 +56,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  cleanSessionStorage() {
-    sessionStorage.removeItem('userData');
+
+  getUserData() {
+    const userData = sessionStorage.getItem('userData');
+    if (userData) {
+      const parsedData = JSON.parse(userData).name;
+      if (parsedData != "") {
+        this.isLogin = false;
+      }
+    }
   }
-
-
 
 
   onLogin() {
