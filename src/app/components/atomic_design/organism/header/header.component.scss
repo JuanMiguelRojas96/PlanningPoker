@@ -27,12 +27,17 @@
     }
 
     &-button{
-      @include typography($font-weight: small);
+      @include typography($font-weight: small, $font-size: 0.875rem);
       background-color: transparent ;
       border: 1px solid #F6F7FC;
       border-radius: 50px;
       width: 9.625rem;
       height: 2rem;
+      cursor: pointer;
+
+      &:hover{
+        box-shadow: 0 0 10px #F6F7FC;
+      }
 
     }
 
