@@ -22,6 +22,7 @@ export class BoardComponent implements OnInit {
   isCardsRevealed$: Observable<boolean>;
 
   statusReveal: boolean = false;
+  enableNewVotation: boolean = false
 
   role: string | null;
 
@@ -39,10 +40,17 @@ export class BoardComponent implements OnInit {
   revealCards() {
     this.store.dispatch(startCardsRevealed())
     this.statusReveal = true
-    setTimeout(() => {this.statusReveal = false;}, 3000)
-
+    setTimeout(() => {
+      this.statusReveal = false;
+      this.enableNewVotation = true
+    }, 3000)
 
   }
+
+  newVotation(){
+    window.location.reload();
+  }
+
 
 
 }

@@ -4,10 +4,7 @@ import { Observable, Subscription} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectInputValueSelector } from 'src/app/state/selectors/input.selector';
-import {
-  selectCardTextSelector,
-  selectDeckTextsSelector,
-} from 'src/app/state/selectors/deck.selector';
+import {selectCardTextSelector, selectDeckTextsSelector} from 'src/app/state/selectors/deck.selector';
 import { ProfileProps } from '../../atoms/profile/profile.component';
 import { cardsSelected, textCardsSelected } from 'src/app/state/actions/room.action';
 import { selectIsCardsRevealedSelector } from 'src/app/state/selectors/board.selector';
@@ -81,8 +78,14 @@ export class RoomComponent implements OnInit {
   }
 
   updatePlayerName(name: string) {
-    this.cards[6].name = name;
-    this.getType();
+    const userData = sessionStorage.getItem('userData');
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      this.cards[6].name = parsedData.name;
+    }else{
+      this.cards[6].name = name;
+      this.getType();
+    }
   }
 
   setProfileName(name: string) {
