@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProfileProps } from '../../atoms/profile/profile.component';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
     fontSize: '14px',
     name: ''
   }
+
+  @Output() buttonClick = new EventEmitter();
 
   constructor(private store: Store<AppState>) {
     this.nameGame = ""
@@ -49,6 +51,10 @@ export class HeaderComponent implements OnInit {
         this.profileProps.name = value.substring(0, 2).toUpperCase();
       })
     }
+  }
+
+  onClickInvite(){
+    this.buttonClick.emit();
   }
 
 }

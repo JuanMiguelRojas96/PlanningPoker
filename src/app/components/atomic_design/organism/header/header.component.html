@@ -8,7 +8,8 @@
 
   <div class="header__container">
     <app-profile class="header__container-profile" [profileProps]="profileProps"></app-profile>
-    <button class="header__container-button">Invitar jugadores</button>
+    <button class="header__container-button" (click)="modal.changeShow()">Invitar jugadores</button>
+    <app-invite-modal #modal ></app-invite-modal>
   </div>
 
 </header>
