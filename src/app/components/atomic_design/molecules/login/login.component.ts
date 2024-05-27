@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    sessionStorage.removeItem('userData');
     this.inputValue$ = this.store.select(selectInputValueSelector);
 
     this.setLabelInput('Tu nombre');

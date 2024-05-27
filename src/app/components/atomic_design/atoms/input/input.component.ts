@@ -24,6 +24,7 @@ export class InputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(setInputValue({newInput: {inputValue: ''}}));
     this.label$ = this.store.select(selectInputLabelSelector);
     this.inputValue$ = this.store.select(selectInputValueSelector);
     this.isInputValid$ = this.store.select(selectIsInputValidSelector);
