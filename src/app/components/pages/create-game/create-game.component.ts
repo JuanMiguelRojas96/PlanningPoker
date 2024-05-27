@@ -54,6 +54,7 @@ export class CreateGameComponent implements OnInit {
 
 
   createGame() {
+    sessionStorage.removeItem('userData');
 
     this.inputValue$.subscribe((value) => {
       this.value = value;
